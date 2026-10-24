@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- 开发入口：仅用于 npm run dev / npm run build。双击使用请打开 dist/index.html -->
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v2ray → Clash 配置转换器</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>v2ray → Clash 配置转换器</h1>
+        <p class="subtitle">
+          粘贴节点分享链接 / Clash 配置 / base64 订阅，或拉取订阅 URL，转换为 Clash 配置或订阅文本。所有解析均在本地完成。
+        </p>
+      </header>
+
+      <section class="card" id="input-card">
+        <div class="card-head">
+          <h2>输入</h2>
+          <div class="hint">
+            支持 vmess:// vless:// trojan:// ss:// ssr:// hysteria2:// hysteria:// tuic:// anytls:// 链接（每行一条）、base64 订阅或 Clash YAML
+          </div>
+        </div>
+
+        <div class="url-row">
+          <input type="text" id="url" placeholder="订阅 URL（https://...），拉取后自动填入" spellcheck="false" />
+          <button class="btn secondary" id="fetch" type="button">获取订阅</button>
+        </div>
+        <details class="advanced">
+          <summary>高级：CORS 代理前缀（直连拉取被跨域拦截时使用）</summary>
+          <input type="text" id="proxy-prefix" placeholder="例如 https://your-proxy.example/?url=" spellcheck="false" />
+        </details>
+
+        <textarea
+          id="input"
+          rows="10"
+          spellcheck="false"
+          placeholder="每行一条链接，例如：&#10;vmess://eyJ2IjoiMiIsInBzIjoi...&#10;vless://... hysteria2://... tuic://...&#10;&#10;也可以粘贴 base64 订阅内容、Clash YAML 配置，或把 txt 文件拖到这里"></textarea>
+        <div class="actions">
+          <label class="btn secondary" for="file">选择文件</label>
+          <input type="file" id="file" accept=".txt,.text,.list,.conf,.yaml,.yml,.json,text/plain" hidden />
+          <button class="btn ghost" id="sample" type="button">填入示例</button>
+          <button class="btn ghost" id="clear" type="button">清空</button>
+          <span class="spacer"></span>
+          <button class="btn primary" id="convert" type="button">开始转换</button>
+        </div>
+      </section>
+
+      <section class="card" id="result-card" hidden>
+        <div class="card-head">
+          <h2>转换结果</h2>
+          <div class="stats" id="stats"></div>
+        </div>
+        <div class="notice warn" id="meta-notice" hidden>
+          包含 vless / hysteria / tuic / ssr / anytls 等节点：需要 Clash Meta (mihomo) 内核。Clash Verge Rev、mihomo-party
+          等客户端默认内置，可直接使用。
+        </div>
+        <div class="actions">
+          <label class="output-label" for="format">输出格式</label>
+          <select id="format">
+            <option value="clash" selected>Clash 完整配置 (YAML)</option>
+            <option value="uri">通用 URI 订阅 (Base64)</option>
+            <option value="v2ray">V2Ray 订阅 (Base64)</option>
+            <option value="ss">SS 订阅 (Base64)</option>
+          </select>
+          <span class="spacer"></span>
+          <button class="btn primary" id="copy" type="button">复制</button>
+          <button class="btn secondary" id="download" type="button">下载</button>
+        </div>
+        <pre id="output" class="code" hidden></pre>
+        <div class="errors" id="errors" hidden>
+          <h3>以下内容未能转换</h3>
+          <ul id="error-list"></ul>
+        </div>
+      </section>
+
+      <footer>纯本地解析，内容不会上传到任何服务器；订阅 URL 拉取会拒绝内网与保留地址。</footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

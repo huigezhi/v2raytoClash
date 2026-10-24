@@ -1,0 +1,14 @@
+# 依赖
+node_modules/
+
+# 用户要求排除的结果目录
+result/
+
+# 本地工具状态
+.mimosa/
+.zcode/
+
+# 构建与系统杂项
+*.log
+.DS_Store
+Thumbs.db

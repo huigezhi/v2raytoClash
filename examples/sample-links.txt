@@ -1,0 +1,24 @@
+# 示例链接（全部为虚构节点信息，仅用于测试转换功能）
+
+vmess://eyJ2IjoiMiIsInBzIjoi56S65L6LLemmmea4ry1XU1MiLCJhZGQiOiJoay5leGFtcGxlLmNvbSIsInBvcnQiOiI0NDMiLCJpZCI6ImI4MzEzODFkLTYzMjQtNGQ1My1hZDRmLThjZGE0OGIzMDgxMSIsImFpZCI6IjAiLCJzY3kiOiJhdXRvIiwibmV0Ijoid3MiLCJ0eXBlIjoibm9uZSIsImhvc3QiOiJjZG4uZXhhbXBsZS5jb20iLCJwYXRoIjoiL3dzIiwidGxzIjoidGxzIiwic25pIjoiaGsuZXhhbXBsZS5jb20ifQ==
+vless://b831381d-6324-4d53-ad4f-8cda48b30811@5.6.7.8:443?encryption=none&security=reality&sni=www.microsoft.com&fp=chrome&pbk=pubkey_xxx&sid=a1b2c3d4&type=tcp&flow=xtls-rprx-vision#示例-Reality
+trojan://pass%40word@tj.example.com:443?sni=tj.example.com&type=ws&path=%2Ftj#示例-Trojan
+ss://aes-128-gcm:test1234@9.8.7.6:8388#示例-SS
+ssr://OS44LjcuNjo4Mzg4Om9yaWdpbjphZXMtMTI4LWNmYjpwbGFpbjpjM055Y0hjLz9vYmZzcGFyYW09YjJKd1lYSmhiUSZwcm90b3BhcmFtPWNISnZkRzl3JnJlbWFya3M9NTZTNjVMNkxMVk5UVWc
+hysteria2://letmein@8.8.4.4:8443/?sni=hy2.example.com&obfs=salamander&obfs-password=obpass&insecure=1#示例-Hysteria2
+hysteria://9.8.7.6:3670?auth=hy1secret&peer=hy1.example.com&upmbps=100&downmbps=500&protocol=udp&insecure=1#示例-Hysteria1
+tuic://b831381d-6324-4d53-ad4f-8cda48b30811:tupass@8.8.8.8:443?sni=tuic.example.com&alpn=h3&congestion_control=bbr#示例-TUIC
+anytls://atpw@1.2.3.4:8443?sni=at.example.com&fp=chrome&insecure=1#示例-AnyTLS
+
+# 以下是一份迷你 Clash YAML 示例（可粘贴到输入框测试 Clash 配置提取）
+mixed-port: 7890
+proxies:
+  - name: 配置-SS
+    type: ss
+    server: 1.2.3.4
+    port: 8388
+    cipher: aes-128-gcm
+    password: cfgpw
+
+# 以下是一段整体 base64 编码的订阅示例（内容为第 1 条链接）
+dm1lc3M6Ly9leUoySWpvaU1pSXNJbkJ6SWpvaTU2UzY1TDZMTGVtbW1lYTRyeTFYVTFNaUxDSmhaR1FpT2lKb2F5NWxlR0Z0Y0d4bExtTnZiU0lzSW5CdmNuUWlPaUkwTkRNaUxDSnBaQ0k2SW1JNE16RXpPREZrTFRZek1qUXROR1ExTXkxaFpEUm1MVGhqWkdFME9HSXpNRGd4TVNJc0ltRnBaQ0k2SWpBaUxDSnpZM2tpT2lKaGRYUnZJaXdpYm1WMElqb2lkM01pTENKMGVYQmxJam9pYm05dVpTSXNJbWh2YzNRaU9pSmpaRzR1WlhoaGJYQnNaUzVqYjIwaUxDSndZWFJvSWpvaUwzZHpJaXdpZEd4eklqb2lkR3h6SWl3aWMyNXBJam9pYUdzdVpYaGhiWEJzWlM1amIyMGlmUT09
